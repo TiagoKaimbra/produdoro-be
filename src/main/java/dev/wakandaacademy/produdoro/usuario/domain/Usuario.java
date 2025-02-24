@@ -26,7 +26,7 @@ public class Usuario {
 	private UUID idUsuario;
 	
 	@Email
-	@Indexed
+	@Indexed(unique = true)
 	private String email;
 	
 	private ConfiguracaoUsuario configuracao;
@@ -38,6 +38,7 @@ public class Usuario {
 	private Integer quantidadePomodorosPausaCurta = 0;
 	
 	public Usuario(UsuarioNovoRequest usuarioNovoRequest, ConfiguracaoPadrao configuracaoPadrao) {
+		this.idUsuario = UUID.randomUUID();
 		this.email = usuarioNovoRequest.getEmail();
 		this.status = StatusUsuario.FOCO;
 		this.configuracao = new ConfiguracaoUsuario(configuracaoPadrao);
